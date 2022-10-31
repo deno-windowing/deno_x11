@@ -7,4 +7,5 @@ export type XWindow = any;
 export type Screen = any;
 export type Visual = any;
 export type Frame = any;
+export type XEvent = any;
 

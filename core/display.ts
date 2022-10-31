@@ -1,5 +1,13 @@
 import { x11 } from "./lib.ts";
-import { ColorMap, Display, GC, Screen, Visual, XWindow } from "./types.ts";
+import {
+  ColorMap,
+  Display,
+  GC,
+  Screen,
+  Visual,
+  XEvent,
+  XWindow,
+} from "./types.ts";
 
 /**
  * To open a connection to the server that controls a display
@@ -7,6 +15,10 @@ import { ColorMap, Display, GC, Screen, Visual, XWindow } from "./types.ts";
  */
 export function OpenDisplay(displayName: string = Deno.env.get("DISPLAY")!) {
   return x11.symbols.XOpenDisplay(new TextEncoder().encode(displayName + "\0"));
+}
+
+export function CloseDisplay(display: Display) {
+  return x11.symbols.XCloseDisplay(display);
 }
 
 /**
@@ -295,9 +307,47 @@ export function CreateWindow(
   y: number,
   width: number,
   height: number,
-  borderWidth: number
+  borderWidth: number,
 ) {
-  return x11.symbols.XCreateWindow(display, parent, x, y, width, height, borderWidth);
+  return x11.symbols.XCreateWindow(
+    display,
+    parent,
+    x,
+    y,
+    width,
+    height,
+    borderWidth,
+  );
+}
+export function CreateSimpleWindow(
+  display: Display,
+  parent: XWindow,
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+  borderWidth: number,
+  border: number,
+  background: number,
+) {
+  return x11.symbols.XCreateSimpleWindow(
+    display,
+    parent,
+    x,
+    y,
+    width,
+    height,
+    borderWidth,
+    border,
+    background,
+  );
+}
+
+export function NextEvent(
+  display: Display,
+  event: XEvent,
+) {
+  return x11.symbols.XNextEvent(display, event);
 }
 
 export function SelectInput(
