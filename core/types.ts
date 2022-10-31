@@ -5,3 +5,5 @@ export type ColorMap = any;
 export type GC = any;
 export type XWindow = any;
 export type Screen = any;
+export type Visual = any;
+
