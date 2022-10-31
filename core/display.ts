@@ -295,8 +295,9 @@ export function CreateWindow(
   y: number,
   width: number,
   height: number,
+  borderWidth: number
 ) {
-  return x11.symbols.XCreateWindow(display, parent, x, y, width, height);
+  return x11.symbols.XCreateWindow(display, parent, x, y, width, height, borderWidth);
 }
 
 export function SelectInput(
