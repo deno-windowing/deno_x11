@@ -287,3 +287,30 @@ export function ServerVendor(display: Display) {
 export function VendorRelease(display: Display) {
   return x11.symbols.XVendorRelease(display);
 }
+
+export function CreateWindow(
+  display: Display,
+  parent: XWindow,
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+) {
+  return x11.symbols.XCreateWindow(display, parent, x, y, width, height);
+}
+
+export function SelectInput(
+  display: Display,
+  parent: XWindow,
+  // deno-lint-ignore no-explicit-any
+  eventMask: any,
+) {
+  return x11.symbols.XSelectInput(display, parent, eventMask);
+}
+
+export function MapWindow(
+  display: Display,
+  frame: XWindow,
+) {
+  return x11.symbols.XMapWindow(display, frame);
+}

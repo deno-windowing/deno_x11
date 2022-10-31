@@ -107,9 +107,20 @@ export const x11 = Deno.dlopen("libX11.so", {
     parameters: ["pointer"],
     result: "i32",
   },
-
   XOpenDisplay: {
     parameters: ["buffer"],
+    result: "pointer",
+  },
+  XCreateWindow: {
+    parameters: ["pointer", "pointer", "i32", "i32", "i32", "i32", "i32"],
+    result: "pointer",
+  },
+  XSelectInput: {
+    parameters: ["pointer", "pointer", "pointer"],
+    result: "pointer",
+  },
+  XMapWindow: {
+    parameters: ["pointer", "pointer"],
     result: "pointer",
   },
 });
