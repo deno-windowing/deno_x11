@@ -1,0 +1,1 @@
+export const CString = (str: string) => new TextEncoder().encode(str+"\0");
